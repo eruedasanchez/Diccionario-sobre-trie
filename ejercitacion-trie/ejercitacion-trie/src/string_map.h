@@ -2,6 +2,7 @@
 #define STRING_MAP_H_
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ public:
     INSERT 
     * Inserta un par clave, valor en el diccionario
     **/
-    void insert(const pair<string, T>&);
+    void insert(const pair<string, T>& a);
 
     /**
     COUNT
@@ -42,7 +43,7 @@ public:
     * Sirve para identificar si una clave está definida o no.
     **/
 
-    int count(const string &key) const;
+    int count(const string& key) const;
 
     /**
     AT
@@ -76,7 +77,7 @@ public:
     * operator[]
     * Acceso o definición de pares clave/valor
     **/
-    T &operator[](const string &key);
+    T &operator[](const string& key);
 
 private:
 
@@ -86,7 +87,7 @@ private:
         vector<Nodo*> siguientes;
 
         /** Puntero al significado de la clave del diccionario */
-        T* definicion;
+        T definicion;
 
         /** Indica si el nodo tiene definida una clave */
         bool status;
