@@ -81,12 +81,40 @@ public:
 private:
 
     struct Nodo {
+        /** Cada nodo esta representado por un vector de punteros a nodos donde cada puntero apunta a un vector de 256 punteros
+         * donde cada posicion representa un puntero a un caracter del codigo ASCII */
         vector<Nodo*> siguientes;
+
+        /** Puntero al significado de la clave del diccionario */
         T* definicion;
+
+        /** Indica si el nodo tiene definida una clave */
+        bool status;
+
+        /** Inicializacion de los nodos de la estructura */
+        Nodo() : siguientes(256, nullptr), definicion(), status(false) {}
+        Nodo(T def) : siguientes(256, nullptr), definicion(def), status(true) {}
+
     };
 
+    /** Puntero a la raiz del Trie */
     Nodo* raiz;
+
+    /** Indica la cantidad de claves definidas actualmente en el diccionario Trie */
     int _size;
+
+    /** DESTRUCTOR AUXILIAR **/
+    void destruir(Nodo* r);
+
+    vector<pair<string,T>> dicc2;
+    vector<pair<string,T>> dicc();
+
+    /** Indica si un nodo tiene hijos **/
+    bool hijos(Nodo const* r);
+
+    /** Indica si un nodo es hijo **/
+    bool hijo(Nodo const* r);
+
 };
 
 #include "string_map.hpp"
